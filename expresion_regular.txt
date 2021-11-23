@@ -1,0 +1,206 @@
+let expReg=/expresión-regular-1/modificadores o claves
+
+let obExpReg=new RegExp("expresión-regular-2","modificadores o claves");
+
+expresión-regular-2 va a ser igual a la expresión-regular-1
+poniendo el caracter \ duplicado.
+
+
+	\caracter -> se toma el caracter como tal, no su
+				significado.
+	\\ -> el caracter del slave. "\"
+	\\\\-> el caracter del slave en la expresión regular 2
+	. -> un cualquiera, excepto salto de línea
+	\. -> el caracter del punto "." en la expreión reguilar 1
+	\\. -> el caracter del punto en la expresión regular 2
+	
+	x|y -> el caracter x o bien el caracter y.
+	el|ella -> la cadena "el" o bien la cadena "ella"
+	(el)|(ella) -> la cadena "el" o bien la cadena "ella".
+	[aeiouáéíóúü] ->  una vocal.
+	[a-z] -> una letra del alfabeto inglés
+	[a-zñáéíóúü] -> una letra del alfabeto español.
+	[0-9] -> un dígito.
+	\d -> un dígito.
+	[^0-9] -> un caracter cualquiera del código ASCII que
+				no sea un dígito.
+	\D -> un caracter cualquiera del código ASCII que
+				no sea un dígito.
+	\b -> delimitador de palabra
+	\B -> un caracter no delimitador de palabra.
+	\s -> un caracter blanco o similar
+	\S -> un caracter que no sea blanco o similar.
+	\w -> un caracter que puede ser alfanumerico o el 
+			subrayado. Equiva a [a-zA-Z0-9_]
+	\W -> un caracter que no sea alfanumérico ni el 
+			subrayado. Equiva a [^a-zA-Z0-9_]
+	\0 -> caracter nulo
+	\xhh -> hh números en hexadecimal. Caracter código
+			ASCII con ese código en hexadecimal.
+	\uxxx -> xxx número. Caracter código utf-8 con el
+			código de número.
+	
+	^  -> inicio. está fuera de los corchetes.
+	$  -> final de entrada o de línea.
+	
+	*  -> repetir de 0 a n veces.
+	+  -> repetir de 1 a n veces.
+	?  -> 0 ó 1 vez.
+	{número} -> ese número de veces.
+	{número-1,número-2} -> como mínimo número-1 de veces y
+							como máximo número-2 de veces.
+	{número,} -> como mínimo número de veces y sin máximo.
+	( ) -> agrupar.
+	
+	modificadores o claves
+	i -> no hace diferencias entre mayúsculas y minúsculas.
+	g -> global.
+	m -> multilínea
+	
+	let miexpReg01=/\b[aeiou]\b/i;
+	let miexpReg11=new RegExp("\\b[aeiou]\\b","i")
+	let miexpReg02=/[aeiou]/i;
+	let miexpReg12=new RegExp("[aeiou]","i");
+	let miexpReg03=/\B[aeiou]\B/i;
+	let miexpReg13=new RegExp("\\B[aeiou]\\B","i");
+	let miexpReg04=/\B[aeiou]/i;
+	let miexpReg04=new RegExp("\\B[aeiou]","i");
+	let palabra01="mis casas";
+	let palabra02="casanova en el caribe";
+	let palabra03="a madrid";
+	let palabra04="voy a mi casa";
+	
+	miexpReg01.test(palabra01) -> devuelve true si cumple 
+	el patrón de la expresión regular y false si no le 
+	cumple.
+	
+	if (!miexpReg01.test(palabra01)){
+		// error.
+		enviar=false;
+		mensaje+=" mensaje de error \n";
+		document.formulario.cajaError.value="mensaje de error";
+	}
+	
+	
+
+let expRegCodPostal01=/^\d{4,5}$\;
+let expRegCodPostal11=new RegExp("^\\d{4,5}$");
+1000, 01000
+9000, 09000
+10000
+20000
+30000
+40000
+50000
+51000
+52000
+
+let expRegCodPostal02=/^((0?[1-9])|([1234]\d)|(5[0-2]))\d{3}$/;
+let expRegCodPostal12=new RegExp("^((0?[1-9])|([1234]\\d)|(5[0-2]))\\d{3}$");
+
+// El nombre empieza por dos letras, termina por letra y en medio va a tener letras o el espacio. Va a tener
+// una longitud de 15 a 30 caracteres.
+let expRegNombre01=/^[a-záéíóúüñ]{2}[a-záéíóúüñ ]{12,27}[a-záéíóúüñ]$/i;
+let expRegNombre11=new RegExp("^[a-záéíóúüñ]{2}[a-záéíóúüñ ]{12,27}[a-záéíóúüñ]$","i");
+
+// Expresión regular del NIF
+let expRegNif01=/^[0-9xyzklm]\d{7}[a-z]$/i;
+let expRegNif11=new RegExp("^[0-9xyzklm]\\d{7}[a-z]$","i");
+
+//Expresión regular del CIF
+let expRegCif01=/^(([a-hjuv]\d{8})|([PQRSW]\d{7}[a-j]))$/i;
+let expRegCif11=new RegExp("^(([a-hjuv]\\d{8})|([PQRSW]\\d{7}[a-j]))$","i");
+
+// Expresión regular para el NIF/CIF
+let expRegNifCif01=/^(([0-9xyzklm]\d{7}[a-z])|([a-hjuv]\d{8})|([pqrsw]\d{7}[a-j]))$/i;
+let expRegNifCif11=new RegExp("^(([0-9xyzklm]\\d{7}[a-z])|([a-hjuv]\\d{8})|([pqrsw]\\d{7}[a-j]))$","i");
+let expRegNifCif02=/^([0-9xyzklma-hjuvpqrsw]\d{7}[a-z0-9])$/i;
+let expRegNifCif12=new RegExp("^([0-9xyzklma-hjuvpqrsw]\d{7}[a-z0-9])$","i");
+
+if (expRegNif.test(cadena) || expRegCif.test(cadena))
+	dato=nifCif(cadena);
+	
+// expr4esión regular de un código inventado
+let expRegcodig01=/^[a-z]{2}((cs)|(cd))\d{3}[\-\/][a-z0-9]{4,8}\-[0-9]$/i;	
+let expRegcodig11=new RegExp("^[a-z]{2}((cs)|(cd))\\d{3}[\\-\\/][a-z0-9]{4,8}\\-[0-9]$","i");
+
+// expresión regular para la fecha
+let expRegFecha01=/^\d{1,2}[\-\/]\d{1,2}[\-\/](\d{2})?\d{2}$/;
+let expRegFecha11=new RegExp("^\\d{1,2}[\\-\\/]\d{1,2}[\\-\\/](\\d{2})?\\d{2}$");
+let expRegFecha02=/^(((0?[1-9])|([12]\d)|(3[01]))[\-\/]((0?[1-9])|1[012]))[\-\/](\d{2})?\d{2}$/;
+let expRegFecha12=new RegExp("^(((0?[1-9])|([12]\\d)|(3[01]))[\\-\\/]((0?[1-9])|1[012]))[\\-\\/](\\d{2})?\\d{2}$");			
+
+//expresión regular de la fecha con dos dígitos para el año, tiene en cuenta los años bisiestos.			
+let expRegFecha3=/^(((((0?[1-9])|([12]\d)|(3[01]))[\-\/]((0?[13578])|(1[02]))|((0?[1-9])|([12]\d)|(30))[\-\/]((0?[469])|(11)))[\-\/]\d{2})|(((((0?[1-9])|[12]\d))[\-\/](0?2[\-\/](([02468][048])|([13579][26])))))|(((0?[1-9])|(1\d)|(2[0-8]))[\-\/](([02468][1235679])|([13579][01345789]))))$/;
+let expRegFecha3=/^(((((0?[1-9])|([12]\d)|(3[01]))[\-\/]((0?[13578])|(1[02]))|((0?[1-9])|([12]\d)|(30))[\-\/]((0?[469])|(11)))[\-\/]\d{2})|
+					(((((0?[1-9])|[12]\d))[\-\/](0?2[\-\/](([02468][048])|([13579][26])))))|
+					(((0?[1-9])|(1\d)|(2[0-8]))[\-\/](([02468][1235679])|([13579][01345789]))))$/;
+
+//expresión regular de la fecha con cuatro dígitos para el año, tiene en cuenta los años bisiestos.			
+let expRegFecha4=/^(((((0?[1-9])|([12]\d)|(3[01]))[\-\/]((0?[13578])|(1[02])))|(((0?[1-9])|([12]\d)|(30))[\-\/]((0?[469])|(11))))[\-\/]\d{4})|((((0?[1-9])|[12]\d))[\-\/]0?2[\-\/](\d{2}(([2468][048])|([13579][26])|(0[48]))|((([02468][048])|([13579][26]))00)))|(((0?[1-9])|(1\d)|(2[0-8]))[\-\/]0?2[\-\/]((\d{2}(([02468][1235679])|([13579][01345789])))|(([02468][1235679])|([13579][01345789]))00))$/;
+let expRegFecha4=/^(((((0?[1-9])|([12]\d)|(3[01]))[\-\/]((0?[13578])|(1[02])))|(((0?[1-9])|([12]\d)|(30))[\-\/]((0?[469])|(11))))[\-\/]\d{4})|
+					((((0?[1-9])|[12]\d))[\-\/]0?2[\-\/](\d{2}(([2468][048])|([13579][26])|(0[48]))|((([02468][048])|([13579][26]))00)))|
+					(((0?[1-9])|(1\d)|(2[0-8]))[\-\/]0?2[\-\/]((\d{2}(([02468][1235679])|([13579][01345789])))|(([02468][1235679])|([13579][01345789]))00))$/;
+meses con 31 dias
+1, 3, 5, 7, 8, 10, 12
+meses con 30 días
+4,6,9,11
+meses con con 30 días y 31 días el año me da
+igual el valor que tenga.
+
+año con dos dígitos, 
+bisiesto si es multiplo de 4.
+00 04 08
+12 16 
+20 24 28
+32 36
+40 44 48
+52 56
+60 64 68
+72 76
+80 84 88
+92 96
+Años bisiesto
+[02468][048]
+[13579][26]
+Años no bisiestos
+[02468][1235679]
+[13579][01345789]
+
+
+Años bisiestos con 4 dígitos 
+múltiplos de 400
+([02468][048])|([13579][26])00
+
+Años bisiestos con 4 dígitos 
+multiplos de 4 y no multiplos de 100
+\d{2}([2468][048])|([13579][26])|(0[48])
+
+
+Años no bisisestos con 4 dígitos 
+multiplos de 100 y no de 400
+([02468][1235679])|([13579][01345789])00
+
+Años no bisiestos con 4 dígitos
+no multiplos de 4 ni de 400
+\d{2}([02468][1235679])|([13579][01345789])
+
+
+ExpresionesExamen
+
+let edita=/^[a-záéíóúñ]{4}[a-záéíóúñ \.]{7,33}[a-záéíóúñ\.]$/i;
+let estilo=new RegExp("^((Novela)|(Poesía)|(Narrativa)|(Diccionario)|(Gramática))$","i")
+
+					
+					
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
