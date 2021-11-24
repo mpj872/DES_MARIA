@@ -149,7 +149,7 @@ function validarCodigoEmpresa(codigoEmpresa) {
 
     if (mensajeError === "") {
         let cuatroPrimerosChars = codigoEmpresa.substr(0, 4);
-        let regex = /^[0-9]{3}[.]{1}+$/;
+        let regex = /^[0-9]{3}[.]/;
         if (!cuatroPrimerosChars.match(regex)) {
             mensajeError += "Error en los primero 4 caracteres del codigo\n";
         }
