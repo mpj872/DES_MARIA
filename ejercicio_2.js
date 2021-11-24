@@ -54,6 +54,11 @@ function validar() {
         document.formulario.errlocalidad.value = mensajeError;
         enviar = false;
     }
+    mensajeError = validarFamilia(document.formulario.familia.value);
+    if (mensajeError) {
+        document.formulario.errfamilia.value = mensajeError;
+        enviar = false;
+    }
 
     return enviar;
 }
@@ -198,6 +203,35 @@ function validarLocalidad(localidad) {
     let regex = new RegExp('^[a-zA-Z\áéíóúüñ]{5,20}?$', 'i');
     if (!regex.test(localidad)) {
         mensajeError = "Error en la localidad de la empresa";
+    }
+
+    return mensajeError;
+}
+function validarFamilia(familia) {
+    let mensajeError = "";
+
+    if (familia.length < 10 || familia.length > 21) {
+        mensajeError = "Error en la longitud del familia de la empresa";
+    }
+
+    if (mensajeError === "") {
+        let cincoPrimerosChars = familia.substr(0, 5);
+        let regex = new RegExp('^[a-zA-Z]');
+        if (!cincoPrimerosChars.match(regex)) {
+            mensajeError += "Error en los primero 5 caracteres de la familia\n";
+        }
+
+        let charsMedio = familia.substr(6, familia.length-8);
+        regex =new RegExp('^[a-zA-Z\\-\|0-9áéíóúüñ. ]+$');
+        if (!charsMedio.match(regex)) {
+            mensajeError += "Error en los caracteres de la familia de la empresa\n";
+        }
+
+        let ultimosTresChars = familia.substr(-3);
+        regex = new RegExp('^[a-zA-Z]');
+        if (!ultimosTresChars.match(regex)) {
+            mensajeError += "Error en el ultimo caracter de la familia de la empresa\n";
+        }
     }
 
     return mensajeError;
