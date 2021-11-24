@@ -43,6 +43,12 @@ function validar() {
         enviar = false;
     }
 
+    mensajeError = validarLocalidad(document.formulario.localidad.value);
+    if (mensajeError) {
+        document.formulario.errlocalidad.value = mensajeError;
+        enviar = false;
+    }
+
     return enviar;
 }
 
@@ -164,6 +170,17 @@ function validarUnidades(unidadesProducto) {
     let regex = new RegExp('^([1-9][0-9]{1,6})?$');
     if (!regex.test(unidadesProducto)) {
         mensajeError = "Error en las unidades del producto";
+    }
+
+    return mensajeError;
+}
+
+function validarLocalidad(localidad) {
+    let mensajeError = "";
+
+    let regex = new RegExp('^[a-zA-Z\áéíóúüñ]{5,20}?$', 'i');
+    if (!regex.test(localidad)) {
+        mensajeError = "Error en la localidad de la empresa";
     }
 
     return mensajeError;
