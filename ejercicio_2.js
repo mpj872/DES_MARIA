@@ -19,6 +19,12 @@ function validar() {
         enviar = false;
     }
 
+    mensajeError = validarPrecioProducto(document.formulario.precio.value);
+    if (mensajeError) {
+        document.formulario.errprecio.value = mensajeError;
+        enviar = false;
+    }
+
 
     return enviar;
 }
@@ -45,20 +51,31 @@ function validarDescripcionProducto(descripcionProducto) {
         let cuatroPrimerosChars = descripcionProducto.substr(0, 4);
         let regex = /^[a-zA-Z]+$/;
         if (!cuatroPrimerosChars.match(regex)) {
-            mensajeError += "Error en los primero 4 caracteres de la descripcion";
+            mensajeError += "Error en los primero 4 caracteres de la descripcion\n";
         }
 
         let charsMedio = descripcionProducto.substr(4, descripcionProducto.length - 5);
         regex =/^[a-zA-Z\-0-9áéíóúüñ ]+$/i;
         if (!charsMedio.match(regex)) {
-            mensajeError += "Error en los caracteres del mediio de la descripcion";
+            mensajeError += "Error en los caracteres del mediio de la descripcion\n";
         }
 
         let ultimoChar = descripcionProducto.substr(-1);
         regex = /^[a-zA-Z]+$/;
         if (!ultimoChar.match(regex)) {
-            mensajeError += "Error en el ultimo caracter de la descripcion";
+            mensajeError += "Error en el ultimo caracter de la descripcion\n";
         }
+    }
+
+    return mensajeError;
+}
+
+function validarPrecioProducto(precioProducto) {
+    let mensajeError = "";
+
+    let regex = /^[1-9][0-9]+([,][0-9]{1,2})?$/;
+    if (!precioProducto.match(regex)) {
+        mensajeError = "Error en el precio del producto";
     }
 
     return mensajeError;
