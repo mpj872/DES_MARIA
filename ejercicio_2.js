@@ -25,6 +25,12 @@ function validar() {
         enviar = false;
     }
 
+    mensajeError = validarNombreEmpresa(document.formulario.empresa.value);
+    if (mensajeError) {
+        document.formulario.errempresa.value = mensajeError;
+        enviar = false;
+    }
+
 
     return enviar;
 }
@@ -76,6 +82,36 @@ function validarPrecioProducto(precioProducto) {
     let regex = /^[1-9][0-9]+([,][0-9]{1,2})?$/;
     if (!precioProducto.match(regex)) {
         mensajeError = "Error en el precio del producto";
+    }
+
+    return mensajeError;
+}
+
+function validarNombreEmpresa(nombreEmpresa) {
+    let mensajeError = "";
+
+    if (nombreEmpresa.length < 10 || nombreEmpresa.length > 27) {
+        mensajeError = "Error en la longitud del nombre de la empresa";
+    }
+
+    if (mensajeError === "") {
+        let tresPrimerosChars = nombreEmpresa.substr(0, 3);
+        let regex = /^[a-zA-Z]+$/;
+        if (!tresPrimerosChars.match(regex)) {
+            mensajeError += "Error en los primero 3 caracteres del nombre\n";
+        }
+
+        let charsMedio = nombreEmpresa.substr(4, nombreEmpresa.length - 5);
+        regex =/^[a-zA-Z0-9áéíóúüñ. ]+$/i;
+        if (!charsMedio.match(regex)) {
+            mensajeError += "Error en los caracteres del mediio del nombre de la empresa\n";
+        }
+
+        let ultimoChar = nombreEmpresa.substr(-1);
+        regex = /^[a-zA-Z0-9]+$/;
+        if (!ultimoChar.match(regex)) {
+            mensajeError += "Error en el ultimo caracter de la descripcion\n";
+        }
     }
 
     return mensajeError;
