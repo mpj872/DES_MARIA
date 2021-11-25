@@ -1,0 +1,76 @@
+
+/* a.-) La imagen de esta página (imagen-31.jpg) deberá tener un tamaño del 35%.
+El color de los hiperenlaces será 2DE120, los hiperenlaces visitados serán de color E18E20, el color de los hiperenlaces cuando se pulse sobre ellos será 20E1D8.
+Todos los párrafos (p)
+que estén dentro de un párrafo (div) y que no sean hijos de los mismos se van a mostrar con el tipo de letra Arial con un tamaño de 11 puntos y de color 841827.*/
+
+body {
+	background: url("imagenes/imagen-31.jpg") repeat;
+	background-size: 35% 35%;
+	margin-left:18px;
+	margin-top:15px;
+	margin-right: 8px;
+}
+
+
+a:link {
+	color: #2DE120;
+}
+
+a:visited {
+	color: #E18E20;
+}
+
+a:active {
+	color: #20E1D8;
+}
+
+div p {
+
+	font-family:Arial;
+	font-size: 11pt;
+	color: #841827;
+}
+
+/* b.-) Todos los párrafos (div) que hay a continuación de una cabecera H2
+se van a mostrar con un borde de 2 puntos, punteado y de color 3A2A5B.
+Siendo el color de fondo de estos párrafos E5E28A, mostrando el color a partir del contenido.
+También van a tener una sobre línea de 3 puntos de color A3ED23.
+Todo el documento va a tener un margen izquierdo de 18 pixeles,
+un margen superior de 14 pixeles y un margen derecho de 8 pixeles. (ESTA ÚLTIMA PARTE ESTÁ EN EL BODY)*/
+
+
+h2+div {
+		border: 2pt;
+		border-style: dotted;
+		border-color: #3A2A5B;
+		background-color: #E5E28A;
+		background-origin: content-box;
+		text-decoration: overline 3pt ;
+		text-decoration-color:#A3ED23;
+	}
+
+/* c.-) La primera lista ordenada que hay va a tener un contador que se va a ir incrementado de 3 en dos,
+empezando la enumeración en 7, delante del contador vamos a poner el literal “Parque” y después del contador vamos a poner “Cabarceno”,
+el contador va a ir desde el número 13 al 46.
+La lista no ordenada que hay al principio va tener como marcador la imagen tc.png.*/
+
+
+ol:first-of-type {
+ list-style-type:none;
+ counter-reset: contador 7;
+ list-style-type: rango;
+}
+
+ol:first-of-type >li:before{
+  counter-increment: contador 3;
+  content: "Parque " counter(contador) " Cabarceno ";
+}
+
+ul:first-of-type {
+	list-style-image: url('imagenes/tc.png');
+}
+
+@counter-style rango {
+	range:13 46;
+}

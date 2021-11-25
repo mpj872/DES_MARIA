@@ -1,0 +1,118 @@
+div>p::first-line{
+
+    font-weight:bold;
+    font-style: oblique;
+    text-decoration: underline;
+  }
+div>p::first-letter{
+    font-size: 3em;
+
+  }
+  /*A un mismo nivel a la primera o la ultima*/
+ol:first-of-type{ /*Seria a las ol solo a las que fueran primer hijo :first-child :last-child*/
+
+  list-style-type: armenian;
+}
+
+@counter-style contador-ciclico {
+  system: cyclic;
+  symbols: "B6" "B5" "B2" "A9";
+  suffix: " ";
+}
+
+ul:last-of-type{
+  list-style: contador-ciclico;
+}
+
+ol:last-of-type{
+
+  list-style-type: lower-roman;
+}
+body{
+
+  font-family: Cambria,cursive;
+  font-size: 8pt;
+  color: red;
+
+
+}
+img {
+width: 65px;
+clear: both;
+}
+@media (min-width:400px){
+	body{
+		font-size: 10pt;
+		color: green;
+
+	}
+  img {
+  width: 80px;
+    clear: both;
+}
+}
+@media (min-width:800px){
+	body{
+		font-size: 12pt;
+		color: orange;
+
+	}
+  img {
+  width: 120px;
+    clear: both;
+}
+}
+@media (min-width:1200px){
+	body{
+		font-size: 15pt;
+		color: orange;
+
+	}
+  img {
+  width: 160px;
+  clear: both;
+}
+}
+a:link{
+  color: #4DE360;
+  font-size: 16pt;
+
+}
+a:visited {
+  color: #A18B02;
+  font-size: 14pt;
+
+}
+a:active {
+  color: #50E1D5;
+  font-size: 20pt;
+
+}
+div#rejilla{
+  display:grid;
+  border: solid black;
+  grid-template-columns:auto auto auto auto;/*Cantidad de columnas*/
+  grid-template-rows:auto auto auto auto auto auto auto;/*Cantidad de filas*/
+  grid-auto-flow:row;/*Se pone en el padre se colocan los hijos en fila*/
+  grid-row-gap: 25px; /*Separacion entre filas*/
+  grid-column-gap: 15px;/*Separacion entre filas*/
+
+}
+div#rejilla>div#p2{
+
+  grid-row:3; /*posicion donde se van a colocar*/
+  grid-column:1;
+
+}
+div#rejilla>div#p5{
+
+  grid-row:4;
+  grid-column:2;
+
+}
+div#rejilla>div#p10{
+
+  grid-row:1;
+  grid-column:1;
+
+}

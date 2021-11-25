@@ -1,0 +1,101 @@
+body{
+background: url(./imagenes/imagen-22.jpg) top left no-repeat,
+url(./imagenes/imagen-24.jpg) top right no-repeat,
+url(./imagenes/imagen-21.jpg) bottom right no-repeat,
+url(./imagenes/imagen-23.jpg) bottom left no-repeat;
+background-attachment: fixed;/*No se si funciona es para que se quede fijo*/
+background-size: 50% 50%;
+font-family: "Times New Roman";
+font-size:13pt;
+color:#195A19;
+line-height: 1.85em;
+}
+
+div h2+p{ /*Hermano adjunto */
+	font-style: italic;
+	font-size:13pt;
+}
+div p+p{
+	border: solid;
+	border-color:yellow;
+	border-radius: 15%; /*redondear el borde*/
+}
+div h2{
+	color:orange;
+	text-decoration: underline dotted;
+}
+h1{
+
+	text-shadow: -5pt 5pt 5px #07357F;/*Solo dos en positivo a la derecha en negativo a la izp el ultimo valor es difuminado*/
+}
+div p{
+	color:#ACD700;
+}
+@media (min-width:1200px){
+p#infinita{
+	display:grid;
+	font-size: 14pt;
+	color:white;
+	background-color: blue;
+  grid-template-columns:auto auto auto auto auto auto auto;/*Cantidad de columnas*/
+  grid-template-rows:auto auto;/*Cantidad de filas*/
+
+  grid-auto-flow:row;/*Se pone en el padre se colocan los hijos en fila*/
+  grid-row-gap: 25px; /*Separacion entre filas*/
+  grid-column-gap: 15px;/*Separacion entre filas*/
+
+}
+}
+@media (min-width:1001px){
+	p#infinita{
+		display:grid;
+		font-size: 12pt;
+		color:white;
+		background-color: orange;
+	  grid-template-columns:auto auto auto auto auto auto;/*Cantidad de columnas*/
+	  grid-template-rows:auto auto auto;/*Cantidad de filas*/
+
+	}
+}
+@media (min-width:801px){
+	p#infinita{
+		display:grid;
+		font-size: 10pt;
+		color:green;
+		background-color: red;
+	  grid-template-columns:auto auto auto auto auto;/*Cantidad de columnas*/
+	  grid-template-rows:auto auto auto;/*Cantidad de filas*/
+
+	}
+}
+@media (min-width:601px){
+	p#infinita{
+		display:grid;
+		font-size: 9pt;
+		color:blue;
+		background-color: white;
+	  grid-template-columns:auto auto auto auto;/*Cantidad de columnas*/
+	  grid-template-rows:auto auto auto auto;/*Cantidad de filas*/
+
+	}
+}
+@media (min-width:400px){
+	p#infinita{
+		display:grid;
+		font-size: 8pt;
+		color:yellow;
+		background-color: blue;
+	  grid-template-columns:auto auto auto;/*Cantidad de columnas*/
+	  grid-template-rows:auto auto auto auto auto;/*Cantidad de filas*/
+
+	}
+}
+p#infinita{
+	display:grid;
+	font-size: 7pt;
+	color:white;
+	background-color: red;
+	grid-template-columns:auto auto ;/*Cantidad de columnas*/
+	grid-template-rows:auto auto auto auto auto auto auto;/*Cantidad de filas*/
+
+}
