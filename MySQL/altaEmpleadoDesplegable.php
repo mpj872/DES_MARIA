@@ -27,7 +27,7 @@ NOMBRE_D:<select name="nombre_d">
     }
 
   }
-var_dump($nombre_d);
+
   ?>
 
 </select>
