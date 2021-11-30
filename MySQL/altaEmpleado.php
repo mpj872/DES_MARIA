@@ -19,9 +19,8 @@ $nombre_d=limpiar($nombre_d);
 //Abro la abrirConexion
 $conn=abrirConexion($servername,$username,$password,$dbname);
 //Después se la paso a la funcion dar de alta
-//Compruebo que el departamento existe
-
 darAltaEmpleado($nombre_e,$dni,$fnac,$nombre_d,$conn);
+
 //Cierro la conexion
 cerrarConexion($conn);
 

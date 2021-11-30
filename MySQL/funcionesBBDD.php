@@ -66,5 +66,34 @@ function darAltaEmpleado ($nombre_e,$dni,$fnac,$nombre_d,$conn){
     }
 
 }
+function descargarDepartamentos (){
+      $servername = "localhost";
+      $username = "root";
+      $password = "rootroot";
+      $dbname = "empleados1n";
+      //Abro la conexion
+      $conn=abrirConexion($servername,$username,$password,$dbname);
+      //Declaro la query
+      $sql = "SELECT * FROM departamento";
+      // use exec() because no results are returned
+      try{
+        //compila y prepara estructuras de datos
+        $gsent=$conn->prepare($sql);
+        //La ejecuto
+        $gsent->execute();
+        // set the resulting array to associative
+      /*  $resultado = $stmt->setFetchMode(PDO::FETCH_ASSOC);*/
+        //Con Fetchall recojo los resultados
+        $resultado = $gsent->fetchAll(PDO::FETCH_ASSOC);
+
+
+
+    }catch(PDOException $e){
+        echo "No se ha ejecutado el select<br>",$e->getMessage();
+    }
+  cerrarConexion($conn);
+  //Devuelvo los resultados
+  return $resultado;
+}
 
 ?>
