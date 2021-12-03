@@ -35,7 +35,7 @@ function consultarDepartamento($conn){
 
   //declaro query de la Consulta
   $sql="select cod_dpto from departamento order by cod_dpto desc limit 1";
- //sql="SELECT MAX(cod_dpto) from departamento";  
+ //$sql="SELECT MAX(cod_dpto) from departamento";  
 
   try{
     //compila y prepara estructuras de datos
