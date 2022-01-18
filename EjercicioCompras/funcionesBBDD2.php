@@ -13,7 +13,7 @@ function abrirConexion()
 {
 	$servername = "localhost";
 	$username = "root";
-	$password = "";
+	$password = "rootroot";
 	$dbname = "comprasweb";
 
     try {
@@ -343,26 +343,57 @@ function consultarPassword($nombre,$password,$conn){
       /*  $resultado = $stmt->setFetchMode(PDO::FETCH_ASSOC);*/
         //Con Fetchall recojo los resultados
         $resultado = $gsent->fetchAll(PDO::FETCH_ASSOC);
-		
-		
+
+
 		if(!empty ($resultado)){
 			$passwordBD=$resultado[0]["clave"];
 			if($passwordBD==$password){
 				$existe=true;
-				
+
 			}else{
 				echo "Contraseña erronea";
 			}
 		}else{
-			
+
 			echo "Ese usuario no esta registrado";
-			
+
 		}
         //Usar el codigo
     }catch(PDOException $e){
         echo "No se ha ejecutado el select<br>",$e->getMessage();
     }
-	
+
 	return $existe;
+}
+function consultarPasswordSesion($nombre,$password,$conn){
+	$existe=false;
+
+	$sql = "SELECT nif,clave from cliente where nombre='$nombre' and clave='$password'";
+	// use exec() because no results are returned
+	   try{
+        //compila y prepara estructuras de datos
+        $gsent=$conn->prepare($sql);
+        //La ejecuto
+        $gsent->execute();
+        // set the resulting array to associative
+      /*  $resultado = $stmt->setFetchMode(PDO::FETCH_ASSOC);*/
+        //Con Fetchall recojo los resultados
+        $resultado = $gsent->fetchAll(PDO::FETCH_ASSOC);
+        //Si recojo algun usuario de la tabla
+
+  		if(!empty ($resultado)){
+        //Guardo su dni en una variable
+        $nif=$resultado[0]['nif'];
+        return $nif;
+
+  		}else{
+
+  			echo "No existe el usuario";
+
+  		}
+        //Usar el codigo
+    }catch(PDOException $e){
+        echo "No se ha ejecutado el select<br>",$e->getMessage();
+    }
 }
 ?>
