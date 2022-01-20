@@ -386,6 +386,9 @@ function comprobarCantidadPorAlmacen($cantidad, $producto,$conn){
        if($resultado[$i]['cantidad']>=$cantidad){
            echo "Productos añadidos a la cesta correctamente";
             $tenemosStock=true;
+	    //Doy de alta la cookie y le quito al almacen la cantidad
+            //O me espero a que compre y no es aquí es cuando termine la compra ?????
+            //Alomejor es mejor comprobar stock cuanto realice la compra final no ahora ????   
             return 
       }
      }
