@@ -39,17 +39,19 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 		//Abro la abrirConexion
 		$conn=abrirConexion();
 		//Consulto BBDD
-		$dni=consultarPasswordSesion($nombre,$password,$conn);
+		$dni=consultarPassword($nombre,$password,$conn);
 		//Si coincide la contraseña con la de la BBDD le redirijo a la pagina de Menu
 
-			session_start();
-			
+		if($dni!='00000000X'){
+				session_start();
+
+
 			$_SESSION['login_cliente'] = $nombre;
 			$_SESSION['nif_cliente'] =$dni;
 
-		  header('Location: http://localhost:81/EjerciciosMySQL/EjercicioCompras/MenuComprasClienteSesion.php');
+		  header('Location: MenuComprasClienteSesion.php ');
 
-
+		}
 
 	} else {
 		echo "Error en datos";

@@ -1,3 +1,8 @@
+<?php
+
+	session_start();
+
+?>
 <HTML>
 <HEAD>
 	<?php
@@ -13,11 +18,13 @@
 
 <form name='mi_formulario' action='' method='post'>
 
-<h1>Bienvenido<?php echo $nombreUsuario;?>  a tu menu de compras</h1>
+<h1>Bienvenido <?php echo $nombreUsuario;?>  a tu menu de compras</h1>
 
 
 Ejercicio 12. <a href="./comprocli.php">Comprar Producto</a><br/>
 Ejercicio 13. <a href="./comconscli.php">Consultar compras</a><br/>
+
+<input type="submit" value="cerrar sesion">
 
 </FORM>
 </BODY>

@@ -332,41 +332,6 @@ function altaRegistro($nif,$nombre,$apellido,$cp,$direccion,$ciudad,$password,$c
 
 function consultarPassword($nombre,$password,$conn){
 	$existe=false;
-	$sql = "SELECT clave from cliente where nombre='$nombre'";
-	// use exec() because no results are returned
-	   try{
-        //compila y prepara estructuras de datos
-        $gsent=$conn->prepare($sql);
-        //La ejecuto
-        $gsent->execute();
-        // set the resulting array to associative
-      /*  $resultado = $stmt->setFetchMode(PDO::FETCH_ASSOC);*/
-        //Con Fetchall recojo los resultados
-        $resultado = $gsent->fetchAll(PDO::FETCH_ASSOC);
-
-
-		if(!empty ($resultado)){
-			$passwordBD=$resultado[0]["clave"];
-			if($passwordBD==$password){
-				$existe=true;
-
-			}else{
-				echo "Contraseña erronea";
-			}
-		}else{
-
-			echo "Ese usuario no esta registrado";
-
-		}
-        //Usar el codigo
-    }catch(PDOException $e){
-        echo "No se ha ejecutado el select<br>",$e->getMessage();
-    }
-
-	return $existe;
-}
-function consultarPasswordSesion($nombre,$password,$conn){
-	$existe=false;
 
 	$sql = "SELECT nif,clave from cliente where nombre='$nombre' and clave='$password'";
 	// use exec() because no results are returned
@@ -389,6 +354,7 @@ function consultarPasswordSesion($nombre,$password,$conn){
   		}else{
 
   			echo "No existe el usuario";
+        return '00000000X';
 
   		}
         //Usar el codigo
@@ -396,4 +362,51 @@ function consultarPasswordSesion($nombre,$password,$conn){
         echo "No se ha ejecutado el select<br>",$e->getMessage();
     }
 }
+function comprobarCantidadPorAlmacen($cantidad, $producto,$conn){
+
+
+	$sql = "SELECT num_almacen,cantidad from almacena where id_producto='$producto'";
+
+  try{
+     //compila y prepara estructuras de datos
+     $gsent=$conn->prepare($sql);
+     //La ejecuto
+     $gsent->execute();
+     // set the resulting array to associative
+   /*  $resultado = $stmt->setFetchMode(PDO::FETCH_ASSOC);*/
+     //Con Fetchall recojo los resultados
+     $resultado = $gsent->fetchAll(PDO::FETCH_ASSOC);
+     //Si recojo algun usuario de la tabla
+     $tenemosStock=false;
+
+   if(!empty ($resultado)){
+     //Recorro el array y compruebo que tengo suficiente stock en algun almacen
+
+     for ($i=0; $i <count($resultado) ; $i++) {
+       if($resultado[$i]['cantidad']>=$cantidad){
+           echo "Productos añadidos a la cesta correctamente";
+            $tenemosStock=true;
+            return 
+      }
+     }
+
+   }
+
+   if(!$tenemosStock){
+
+     echo "no disponemos de suficiente stock del producto seleccionado";
+
+   }
+     //Usar el codigo
+ }catch(PDOException $e){
+     echo "No se ha ejecutado el select<br>",$e->getMessage();
+ }
+
+
+
+
+
+}
+
+
 ?>

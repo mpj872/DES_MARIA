@@ -1,12 +1,12 @@
 <HTML>
 <HEAD>
-<?php 
+<?php
 
 if(isset($_COOKIE['login'])){
 	$nombreUsuario=$_COOKIE['login'];
-	
+
 ?>
-	
+
 <TITLE> FORMULARIO COMPRAS </TITLE>
 <meta charset="utf-8" />
 </HEAD>
@@ -20,20 +20,18 @@ if(isset($_COOKIE['login'])){
 Ejercicio 12. <a href="./comprocli.php">Comprar Producto</a><br/>
 Ejercicio 13. <a href="./comconscli.php">Consultar compras</a><br/>
 
+<input type="submit" value="borrar cookie">
+
 </FORM>
 </BODY>
-</HTML>	
-	
-	
-<?php 	
+</HTML>
+
+
+<?php
 }else{
 	echo "No logado";
-	
-	
+
+
 }
 
 ?>
-
-
-
-
